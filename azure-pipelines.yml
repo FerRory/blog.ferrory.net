@@ -10,8 +10,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
-jobs:
+stages:
+- stage: Preview
+  jobs:
   - job: preview_phase
     steps:
     - task: AzureStaticWebApp@0
@@ -21,9 +22,10 @@ jobs:
         output_location: 'docs/.vuepress/dist'
         deployment_environment: 'preview'
         azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
+- stage: Production
+  jobs:
   - deployment: production_phase
     environment: blog-ferrory-net
-    dependsOn: preview_phase
     strategy: 
      runOnce:
       deploy:
