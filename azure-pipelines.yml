@@ -17,3 +17,4 @@ steps:
     app_build_command: 'npm run docs:build'
     output_location: 'docs/.vuepress/dist'
     deployment_environment: 'preview'
+    azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
